@@ -65,6 +65,8 @@ class AddViewController: UIViewController {
         let date = datePicker.date
         
         insertData(title: title, date: date, needsNotification: needsNotif)
+        let tableVc = TableViewController()
+        tableVc.tableView.reloadData()
         
         self.dismiss(animated: true, completion: nil)
         

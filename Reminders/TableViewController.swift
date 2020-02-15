@@ -101,16 +101,22 @@ class TableViewController: UITableViewController, UIViewControllerPreviewingDele
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == UITableViewCellEditingStyle.delete{
 			
-			context.delete(reminders[indexPath.row])
-			reminders.remove(at: indexPath.row)
-			tableView.deleteRows(at: [indexPath], with: .automatic)
-			do {
-				try context.save()
-				
-			}catch {
-				print("error")
-			}
-			tableView.reloadData()
+			let alert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete this reminder?", preferredStyle: .actionSheet)
+			alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+			alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (_) in
+				context.delete(self.reminders[indexPath.row])
+				self.reminders.remove(at: indexPath.row)
+				tableView.deleteRows(at: [indexPath], with: .automatic)
+				do {
+					try context.save()
+					
+				}catch {
+					print("error")
+				}
+				tableView.reloadData()
+			}))
+			self.present(alert, animated: true, completion: nil)
+			
 		}
 	}
 	

@@ -17,26 +17,26 @@ class PreviewViewController: UIViewController {
     @IBOutlet weak var titleFld: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-                titleFld.text = titleText
-                datePicker.date = date
-                notifSwitch.isOn = needsNotification
+        titleFld.text = titleText
+        datePicker.date = date
+        notifSwitch.isOn = needsNotification
         
-    }
-
-    func updateView(){
-        
-
     }
     
-
+    func updateView(){
+        
+        
+    }
+    
+    
 }
